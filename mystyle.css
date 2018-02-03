@@ -1,5 +1,5 @@
 h1 {
-    color: white;
+    color: skyblue;
     font-family: avenir;
 }
 
@@ -9,6 +9,7 @@ h2 {
 }
 p {
     font-size: 40px;
+    
 }
 form {
     margin: 20px auto;
@@ -43,8 +44,12 @@ form {
 .btn:hover{
     
     background: skyblue;
-    
 }
+    
+
+  
+    
+
 p, .btn{
     color: #008FA3;
     font-family: avenir;
