@@ -7,6 +7,12 @@ h1 {
     color: white;
     font-family: avenir;
 }
+h2 {
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: avenir;
+}
 
 form {
     margin: 20px auto;
