@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Admin(models.Model):
-    username = models.CharField(max_length=64, unique=True, primary_key=True)
+    username = models.CharField(max_length=64, unique=True)
     password = models.CharField(max_length=1024)
 
 
@@ -17,7 +17,7 @@ class Machine(models.Model):
 
 class User(models.Model):
     name = models.CharField(max_length=64)
-    phone = models.CharField(max_length=32)
+    email = models.CharField(max_length=1024)
     start_time = models.DateTimeField()
     duration = models.IntegerField()
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
