@@ -1,10 +1,11 @@
 body {
-    background-color: #b3ffff;
+    background-color: white;
 }
 h1 {
     text-align: center;
     font-size: 50px;
-    color: grey;
+    color: white;
+    font-family: avenir;
 }
 
 form {
@@ -28,4 +29,11 @@ input[type = "text"] {
     margin-bottom: 25px;
     width: 100%;
     border: 2px solid grey;
+}
+.container-fluid{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    background-color: skyblue;
 }
