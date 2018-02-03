@@ -12,8 +12,7 @@ class Machine(models.Model):
     min_time = models.IntegerField()
     max_time = models.IntegerField()
     room = models.CharField(max_length=64)
-    admin = models.ForeignKey(Admin, on_delete=models.CASCADE, default=Admin())
-    last_user_id = models.IntegerField()
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
 
 
 class User(models.Model):
@@ -21,5 +20,4 @@ class User(models.Model):
     phone = models.CharField(max_length=32)
     start_time = models.DateTimeField()
     duration = models.IntegerField()
-    machine = models.ForeignKey(
-        Machine, on_delete=models.CASCADE, default=Machine())
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
