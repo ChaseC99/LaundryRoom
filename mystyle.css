@@ -1,0 +1,23 @@
+body {
+    background-color: #b3ffff;
+}
+
+h1 {
+    color: navy;
+    font-size: 60px;
+    margin-left: 20px;
+}
+
+h2 {
+    color: grey;
+    font-size: 50px;
+    
+}
+p {
+    font-size: 20px;
+}
+form {
+    margin: 20px auto;
+    width: 320px;
+    color: grey;
+}
