@@ -22,13 +22,13 @@ form {
     padding-bottom: 10vh;
     padding-left: 10vw;
     padding-right: 10vw;
-    background-color: #b3ffff !important;
+    background-color: skyblue;
 }
 .jumbotron, h1{
-    color:navy !important;
+    color:white!important;
 }
 .jumbotron, h2{
-    color:lightskyblue!important;
+    color:darkcyan;
 }
 
 .container-fluid{
