@@ -1,0 +1,19 @@
+<html>
+
+<body>
+    <h1>Hello World!</h1>
+    <p>You're at the laundry index.</p>
+    {% if admin_list %}
+    <ul>
+        {% for admin in admin_list %}
+        <li>
+            <!-- <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a> -->
+            <pre>{{admin.username}}</pre>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <pre>No admins are available.</pre> {% endif %}
+</body>
+
+</html>
