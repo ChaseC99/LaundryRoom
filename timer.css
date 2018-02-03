@@ -1,0 +1,11 @@
+.container-fluid{
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    background-color: deepskyblue!important;
+}
+h1{
+    color: white;
+    font-family: avenir;
+}
