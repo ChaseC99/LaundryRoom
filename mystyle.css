@@ -1,17 +1,11 @@
-body {
-    background-color: #b3ffff;
-}
-
 h1 {
-    color: navy;
-    font-size: 60px;
-    margin-left: 20px;
+    color: white;
+    font-family: avenir;
 }
 
 h2 {
     color: grey;
-    font-size: 50px;
-    
+    font-family: avenir;
 }
 p {
     font-size: 20px;
@@ -21,3 +15,47 @@ form {
     width: 320px;
     color: grey;
 }
+
+
+.jumbotron{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    background-color: #b3ffff !important;
+}
+.jumbotron, h1{
+    color:navy !important;
+}
+.jumbotron, h2{
+    color:lightskyblue!important;
+}
+
+.container-fluid{
+    align-content: center;
+}
+
+.btn{
+    border: solid #008FA3 !important;
+    border-radius: 25px !important;
+    border-width: 2px !important;
+}
+p, .btn{
+    color: #008FA3;
+    font-family: avenir;
+}
+
+.activity{
+    margin-top: 5vh;
+    padding-bottom: 20vh;
+    padding-top: 5vh;
+    padding-left:5vw;
+    padding-right:5vw;
+    background-color: #0092A6;
+    color:white !important;
+}
+.activity-info{
+    
+}
+
+
