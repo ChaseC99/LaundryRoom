@@ -16,7 +16,10 @@ form {
     color: grey;
 }
 
-
+.lead {
+    text-align:right;
+    
+}
 .jumbotron{
     padding-top: 10vh;
     padding-bottom: 10vh;
