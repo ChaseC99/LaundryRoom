@@ -1,13 +1,46 @@
-.container-fluid{
-    padding-top: 10vh;
-    padding-bottom: 5vh;
-    padding-left: 10vw;
-    padding-right: 10vw;
-    background-color: deepskyblue!important;
-}
+
 h1{
-    color: white;
+    color: darkcyan;
     font-family: avenir;
+    font-size: 50;
+  
 }
 
 
+body{
+	text-align: center;
+	background: white;
+  font-family: avenir;
+
+}
+
+
+
+
+#clockdiv{
+	font-family: avenir;
+	color: white;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 30px;
+	border-radius: 30px;
+	background: darkcyan;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 20px;
+	border-radius: 5px;
+	background: white;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 30px;
+}

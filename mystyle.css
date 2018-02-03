@@ -8,7 +8,8 @@ h2 {
     font-family: avenir;
 }
 p {
-    font-size: 20px;
+    font-size: 40px;
+    
 }
 form {
     margin: 20px auto;
@@ -25,13 +26,13 @@ form {
     padding-bottom: 10vh;
     padding-left: 10vw;
     padding-right: 10vw;
-    background-color: #b3ffff !important;
+    background-color: skyblue;
 }
 .jumbotron, h1{
-    color:navy !important;
+    color:white!important;
 }
 .jumbotron, h2{
-    color:lightskyblue!important;
+    color:darkcyan;
 }
 
 .container-fluid{
@@ -43,6 +44,15 @@ form {
     border-radius: 25px !important;
     border-width: 2px !important;
 }
+.btn:hover{
+    
+    background: skyblue;
+}
+    
+
+  
+    
+
 p, .btn{
     color: #008FA3;
     font-family: avenir;
