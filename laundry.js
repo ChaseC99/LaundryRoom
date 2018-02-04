@@ -1,3 +1,9 @@
+function findMachineId(){
+    m = location.href.split('?');
+    f = m[1].split('=');    
+    document.write(f[1]);
+}
+
 function getMachines(){
     request = new XMLHttpRequest();
     url = "http://169.234.81.18:8000/api/all_machine/Niebla%20laundry%20room/";
@@ -33,7 +39,7 @@ function addMachineButtons(machines){
         p = document.createElement("p");
         p.style = "text-align: center";
         link = document.createElement("a");
-        //link.href = link_url;
+        link.href = link_url;
         button = document.createElement("button");
         button.addEventListener('click', function(){
             machineSelected(id);
