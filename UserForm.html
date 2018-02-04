@@ -22,11 +22,38 @@
                 </p>
             </h2>
         </div>
-        <form>
+        <form id="userform" action="index.html">
 
-            <input type = "text" name = 'name' placeholder = "First and Last Name" required>
-            <input type = "number" name = 'time' placeholder = "0 minutes" min = 30 max = 60 required>
-            <input type = "email" name = 'email' placeholder = "Email Address" required>
+            <script>
+                f = document.getElementById("userform");
+
+                f.onsubmit = function(){
+                    id = findMachineId();
+                    name = document.getElementById("userName").value;
+                    email = document.getElementById("userEmail").value;
+                    duration = document.getElementById("duration").value;
+
+                    request = new XMLHttpRequest();
+                    url = "http://169.234.81.18:8000/api/new_user/" + id + "/" + email + "/" + email + "/" + duration;
+
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //window.location.href = "machinebusy.html?machine=" + id;
+                        }
+                    };
+
+                    request.open("GET", url, true);
+                    request.send();
+
+                    window.alert("New Cycle Started!");
+                    window.location.href = ("machinebusy.html?machine=" + id);
+                };
+
+                console.log(f);
+            </script>
+            <input type = "text" id = 'userName' placeholder = "First and Last Name" required>
+            <input type = "number" id = 'duration' placeholder = "0 minutes" min = 30 max = 60 required>
+            <input type = "email" id = 'userEmail' placeholder = "Email Address" required>
 
             <input type = "submit" value = "Submit">
 
