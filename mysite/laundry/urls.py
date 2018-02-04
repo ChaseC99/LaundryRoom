@@ -7,6 +7,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     # ex: /login
     path('login', views.login, name='login'),
+    # ex: /machine
+    path('machine', views.machine, name='machine'),
+    # ex: /laundry_js
+    path('laundry.js', views.laundry_js, name='laundry_js'),
     # API
     # ex: /api/auth/admin/5m3ofp350...
     path('api/auth/<str:username>/<str:password>/', views.auth, name='auth'),

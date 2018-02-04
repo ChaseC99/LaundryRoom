@@ -85,7 +85,7 @@ class Machine(models.Model):
 
     def gen_qr(self):
         url = pyqrcode.create(
-            "http://169.234.81.18:8000/machine.html?machine=" + str(self.id))
+            "http://169.234.81.18:8000/machine?id=" + str(self.id))
         url.png("../img/" + str(self.id) + ".png", scale=10)
 
 

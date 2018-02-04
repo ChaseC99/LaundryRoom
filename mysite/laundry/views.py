@@ -23,7 +23,17 @@ def login(request):
     return HttpResponse(template.render({}, request))
 
 
+def machine(request):
+    template = loader.get_template('laundry/machine.html')
+    return HttpResponse(template.render({}, request))
+
+
+def laundry_js(request):
+    template = loader.get_template('laundry/laundry.js')
+    return HttpResponse(template.render({}, request))
+
 # API
+
 
 def auth(request, username, password):
     try:
