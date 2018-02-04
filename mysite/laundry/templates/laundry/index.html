@@ -3,17 +3,31 @@
 <body>
     <h1>Hello World!</h1>
     <p>You're at the laundry index.</p>
-    {% if admin_list %}
+    {% if machines %}
     <ul>
-        {% for admin in admin_list %}
-        <li>
-            <!-- <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a> -->
-            <pre>{{admin.username}}</pre>
-        </li>
+        <li>{{machines.items}}</li>
+        {% for type,machine_list in machines.items %}
+        <li>{{type}}</li>
+        <ul>
+            {% for id,name in machine_list %}
+            <li>
+                <a href="/machine/{{ id }}/">{{ name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
         {% endfor %}
     </ul>
     {% else %}
-    <pre>No admins are available.</pre> {% endif %}
+    <pre>No machines are available.</pre> {% endif %} {% if admins %}
+    <ul>
+        <li>{{admins}}</li>
+        {% for admin in admins %}
+        <li>{{ admin }} </li>
+    </ul>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <pre>No machines are available.</pre> {% endif %}
 </body>
 
 </html>
