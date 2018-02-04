@@ -26,8 +26,8 @@
 
                     <script>getMachines();</script>
 				</div>
-            
-                
+
+
             </div>
             <div class="jumbotron" style="margin-top: 45px">
                 <h2 class="display-4" style="margin-bottom: 50px">Trouble Managing Your Laundry Machine? </h2>
@@ -55,55 +55,28 @@
   <thead>
     <tr>
 
-      <th scope="col">Machine No</th>
+      <th scope="col">Machine Name</th>
       <th scope="col">Machine Type</th>
       <th scope="col">User</th>
       <th scope="col">Email</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Washer</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+  <tbody id="activityLog"></tbody>
+      <script>
+          request = new XMLHttpRequest();
+          url = "http://169.234.81.18:8000/api/all_machine/Niebla%20laundry%20room/";
+          tbl = document.getElementById("activityLog");
 
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Dryer</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+          request.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                  var machines = JSON.parse(this.responseText)["machines"];
+                  loadActivityLog(tbl, machines)
+              }
+          };
 
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Washer</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">4</th>
-      <td>Dryer</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">5</th>
-      <td>Washer</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">6</th>
-      <td>Dryer</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
+          request.open("GET", url, true);
+          request.send();
+      </script>
   </tbody>
 </table>
 				</div>
