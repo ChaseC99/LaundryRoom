@@ -76,13 +76,13 @@ class Machine(models.Model):
         self.user_set.create(name=name, email=email,
                              start_time=timezone.now(), duration=duration)
 
-    def machine_info(self) -> (str, str, str, int, int):
+    def machine_info(self) -> (str, int, int, str, str, int, int):
         num_of_users = self.user_set.count()
         if num_of_users <= 0:
-            return (self.name,)
+            return (self.name, self.min_time, self.max_time)
         last_user = self.user_set.order_by(
             "start_time")[num_of_users - 1:num_of_users].get()
-        return (self.name, last_user.name, last_user.email, last_user.get_start_timestamp(), last_user.duration)
+        return (self.name, self.min_time, self.max_time, last_user.name, last_user.email, last_user.get_start_timestamp(), last_user.duration)
 
     def gen_qr(self):
         url = pyqrcode.create(
