@@ -93,7 +93,6 @@ function machineSelected(id){
 }
 
 
-
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -118,3 +117,58 @@ window.onload = function () {
 };
        
 
+// ACTIVITY LOG CODE
+
+// Generates a table row
+function generate_row(data, rowNum){
+    var row = document.createElement("tr");
+
+    machine_info = data[rowNum]
+
+    th = document.createElement("th");
+    th.scope = "row";
+    th_text = document.createTextNode(machine_info["name"]);
+    th.appendChild(th_text);
+    row.appendChild(th);
+
+    type = document.createElement("td");
+    type_txt = document.createTextNode(machine_info["type"]);
+    type.appendChild(type_txt);
+    row.appendChild(type);
+
+    user = document.createElement("td");
+    user_txt = document.createTextNode(machine_info["last_user"]["name"]);
+    user.appendChild(user_txt);
+    row.appendChild(user);
+
+    user_email = document.createElement("td");
+    user_email_txt = document.createTextNode(machine_info["last_user"]["email"]);
+    user_email.appendChild(user_email_txt);
+    row.appendChild(user_email);
+
+    return row;
+}
+
+function generate_all_rows(data){
+    var rows = [];
+
+    for (var i = 0; i < data.length; i++){
+        rows.push(generate_row(data, i));
+    }
+
+    return rows;
+}
+
+// Updates the table
+function update_table(tbl, rows){
+    // add all of the rows to the body
+    for (var r = 0; r < rows.length; r++){
+        tbl.appendChild(rows[r]);
+    }
+}
+
+// Loads activity log
+function loadActivityLog(table, data){
+    rows = generate_all_rows(data)
+    update_table(table, rows);
+}

@@ -26,88 +26,56 @@
 
                     <script>getMachines();</script>
 				</div>
-            
-                
             </div>
-            <div class="jumbotron" style="margin-top: 45px">
-                <h2 class="display-4" style="margin-bottom: 50px">Trouble Managing Your Laundry Machine? </h2>
-                <h3>Laundry Room allows consumers to track the status of their laundry machines by monitering who's using it, the time left, and allowing communication with other users via email.</h3>
-                <hr class="my-4">
-                <h4 >Simply scan the QR Code or select your washer/dryer above. From small homes to broad businesses, Laundry Room is the assistant towards simplifying your life and preventing future passive aggressive fights. Cheers! </h4>
-                <p class="lead">
-                </p>
-            </div>
-
-
-
-			<div class="col-xs-6">
-
-				</div>
-			</div>
+			<div class="col-xs-6"></div>
+		</div>
 			<div class="row">
 				<div class="activity container-fluid">
 					<p style="color:white; margin-top: 50px">
 						<b>Activity Log: </b>
 					</p>
-					<div id="#appendInfoHere" class="activity-info" style="margin-top: 75px">
-					</div>
+					<div id="#appendInfoHere" class="activity-info" style="margin-top: 75px"></div>
                     <table class="table table-dark">
-  <thead>
-    <tr>
+                      <thead>
+                        <tr>
 
-      <th scope="col">Machine No</th>
-      <th scope="col">Machine Type</th>
-      <th scope="col">User</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+                          <th scope="col">Machine Name</th>
+                          <th scope="col">Machine Type</th>
+                          <th scope="col">User</th>
+                          <th scope="col">Email</th>
+                        </tr>
+                      </thead>
+                      <tbody id="activityLog"></tbody>
+                          <script>
+                              request = new XMLHttpRequest();
+                              url = "http://169.234.81.18:8000/api/all_machine/Niebla%20laundry%20room/";
+                              tbl = document.getElementById("activityLog");
 
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+                              request.onreadystatechange = function() {
+                                  if (this.readyState == 4 && this.status == 200) {
+                                      var machines = JSON.parse(this.responseText)["machines"];
+                                      loadActivityLog(tbl, machines)
+                                  }
+                              };
 
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">4</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">5</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-      <tr>
-      <th scope="row">6</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-
-    </tr>
-  </tbody>
-</table>
+                              request.open("GET", url, true);
+                              request.send();
+                          </script>
+                      </tbody>
+                    </table>
 				</div>
 			</div>
-	    </div>
+        <div class="jumbotron" style="margin-top: 45px">
+            <h2 class="display-4" style="margin-bottom: 50px">Trouble Managing Your Laundry Machine? </h2>
+            <h3>Laundry Room allows consumers to track the status of their laundry machines by monitering who's using it, the time left, and allowing communication with other users via email.</h3>
+            <hr class="my-4">
+            <h4 >Simply scan the QR Code or select your washer/dryer above. From small homes to broad businesses, Laundry Room is the assistant towards simplifying your life and preventing future passive aggressive fights. Cheers! </h4>
+            <p class="lead">
+            </p>
+        </div>
+        <footer>
+				<a href="https://github.com/ChaseC99/LaundryRoom" target="_blank">Source Code</a>
+				<p>&copy; 2018 Mena's Hackers</p>
+		</footer>
 	</body>
 </html>
