@@ -102,7 +102,8 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
 
         if (--timer < 0) {
             timer = duration;
@@ -111,9 +112,8 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var Minutes = 60 * 1 ,
-        display = document.querySelector('#time');
-    startTimer(Minutes, display);
+    var Minutes = 60 * 1;
+    startTimer(Minutes);
 };
        
 
