@@ -1,40 +1,62 @@
 <!DOCTYPE HTML>
-
-
 <html>
-<head>
-    <title>User Form</title>
-    <script lang="javascript" src="laundry.js"></script>
-    
-    <link rel = "stylesheet" type = "text/css" href = "userformstyle.css">
-</head>
+    <head>
+        <title>User Form</title>
+        <link rel="icon" href="img/mena_machine.png">
+        <script lang="javascript" src="laundry.js"></script>
+        <link rel = "stylesheet" type = "text/css" href = "userformstyle.css">
+    </head>
 
-<body>
-    <div id="machine"></div>
-    <div class="container-fluid">
-    <h1>User Form</h1>
+    <body>
+        <div class="container-fluid">
+            <h1>Start New Cycle</h1>
+            <h2>
+                Enter your information below to start a new cycle for
+                <br>
+                <p id="right">
+                    <script>
+                    p = document.getElementById('right');
+                    id = findMachineId();
+                    addMachineName(id, p);
+                    </script>
+                </p>
+            </h2>
+        </div>
+        <form id="userform" action="index.html">
 
-    
-    <h2> You are using machine <br><p id="right">
-<script>
-    findMachineId()
-</script>
-</p> </h2>
+            <script>
+                f = document.getElementById("userform");
 
-    </div>
-    <form>
+                f.onsubmit = function(){
+                    id = findMachineId();
+                    name = document.getElementById("userName").value;
+                    email = document.getElementById("userEmail").value;
+                    duration = document.getElementById("duration").value;
 
-        <input type = "text" name = 'txtbox' placeholder = "First and Last Name" required>
-        <input type = "email" name = 'txtbox' placeholder = "Email Address" required>
+                    request = new XMLHttpRequest();
+                    url = "http://169.234.81.18:8000/api/new_user/" + id + "/" + name + "/" + email + "/" + duration;
 
-        <input type = "submit" value = "Submit">
-        <script>
-            
-        </script>
-        <input type="button" onclick="location.href='timer.html?machine='" value="Go to Timer!" />
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //window.location.href = "machinebusy.html?machine=" + id;
+                        }
+                    };
 
-    </form>
-</body>
-    
-    
+                    request.open("GET", url, true);
+                    request.send();
+
+                    window.alert("New Cycle Started!");
+                    window.location.href = ("machinebusy.html?machine=" + id);
+                };
+
+                console.log(f);
+            </script>
+            <input type = "text" id = 'userName' placeholder = "First and Last Name" required>
+            <input type = "number" id = 'duration' placeholder = "0 minutes" min = 30 max = 60 required>
+            <input type = "email" id = 'userEmail' placeholder = "Email Address" required>
+
+            <input type = "submit" value = "Submit">
+
+        </form>
+    </body>
 </html>

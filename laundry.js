@@ -1,7 +1,7 @@
 function findMachineId(){
     m = location.href.split('?');
     f = m[1].split('=');
-    document.write(f[1]);
+    return f[1];
 }
 
 function getMachines(){
@@ -54,6 +54,21 @@ function addMachineButtons(machines){
     }
 }
 
+function addMachineName(id, element){
+    request = new XMLHttpRequest();
+    url = "http://169.234.81.18:8000/api/machine_info/" + id;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var machine_info = JSON.parse(this.responseText);
+            element.innerHTML = machine_info["machine_name"];
+        }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+}
+
 function machineSelected(id){
     request = new XMLHttpRequest();
     url = "http://169.234.81.18:8000/api/machine_info/" + id;
@@ -75,4 +90,85 @@ function machineSelected(id){
 
     request.open("GET", url, true);
     request.send();
+}
+
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var Minutes = 60 * 1 ,
+        display = document.querySelector('#time');
+    startTimer(Minutes, display);
+};
+       
+
+// ACTIVITY LOG CODE
+
+// Generates a table row
+function generate_row(data, rowNum){
+    var row = document.createElement("tr");
+
+    machine_info = data[rowNum]
+
+    th = document.createElement("th");
+    th.scope = "row";
+    th_text = document.createTextNode(machine_info["name"]);
+    th.appendChild(th_text);
+    row.appendChild(th);
+
+    type = document.createElement("td");
+    type_txt = document.createTextNode(machine_info["type"]);
+    type.appendChild(type_txt);
+    row.appendChild(type);
+
+    user = document.createElement("td");
+    user_txt = document.createTextNode(machine_info["last_user"]["name"]);
+    user.appendChild(user_txt);
+    row.appendChild(user);
+
+    user_email = document.createElement("td");
+    user_email_txt = document.createTextNode(machine_info["last_user"]["email"]);
+    user_email.appendChild(user_email_txt);
+    row.appendChild(user_email);
+
+    return row;
+}
+
+function generate_all_rows(data){
+    var rows = [];
+
+    for (var i = 0; i < data.length; i++){
+        rows.push(generate_row(data, i));
+    }
+
+    return rows;
+}
+
+// Updates the table
+function update_table(tbl, rows){
+    // add all of the rows to the body
+    for (var r = 0; r < rows.length; r++){
+        tbl.appendChild(rows[r]);
+    }
+}
+
+// Loads activity log
+function loadActivityLog(table, data){
+    rows = generate_all_rows(data)
+    update_table(table, rows);
 }
