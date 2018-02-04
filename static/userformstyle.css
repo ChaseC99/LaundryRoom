@@ -4,6 +4,7 @@ body {
 h1 {
     text-align: center;
     font-size: 50px;
+    display: block;
     color: white;
     font-family: avenir;
 }
@@ -59,4 +60,8 @@ input[type = "submit"] {
 
 .backIcon{
     width: 7%;
+}
+
+#lastUser{
+    color: grey;
 }
