@@ -73,3 +73,22 @@ p{
     margin:auto;
 
 }
+
+/**************************
+	FOOTER
+**************************/
+
+footer {
+	font-size: 1em;
+	text-align: center;
+	clear: both;
+	padding-top: 50px;
+	color: skyblue;
+}
+footer p{
+    width: 100%;
+	font-size: 1em;
+	text-align: center;
+	clear: both;
+	color: skyblue;
+}
