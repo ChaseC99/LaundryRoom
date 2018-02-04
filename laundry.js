@@ -54,6 +54,21 @@ function addMachineButtons(machines){
     }
 }
 
+function addMachineName(id, element){
+    request = new XMLHttpRequest();
+    url = "http://169.234.81.18:8000/api/machine_info/" + id;
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var machine_info = JSON.parse(this.responseText);
+            element.innerHTML = machine_info["machine_name"];
+        }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+}
+
 function machineSelected(id){
     request = new XMLHttpRequest();
     url = "http://169.234.81.18:8000/api/machine_info/" + id;
