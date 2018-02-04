@@ -9,7 +9,7 @@
 	</head>
     <body>
         <div class="container-fluid">
-            <h2 style="text-align: center;">Machine is used by <br> [User Form] <br> [User Email] <h2>
+            <h2 style="text-align: center;">Machine is used by <br> [User Form] <br> [User Email] </h2>
 
             <h3 style="text-align: center;">Time Remaining</h3>
             <h4 style="text-align: center;">for machine number 
@@ -30,7 +30,7 @@
         </div>
             
         <script>
-            /*request = new XMLHttpRequest();
+            request = new XMLHttpRequest();
             url = "http://169.234.81.18:8000/api/machine_info/" + findMachineId();
 
             request.onreadystatechange = function() {
@@ -38,12 +38,16 @@
                     var machine_info = JSON.parse(this.responseText);
 
                     end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
-                    current_time = + new Date();    
+                    current_time = + new Date();
+                    
+                    time_till_done = (end_time - current_time)/1000;
+                    
+                    startTimer(time_till_done);
                 }
             };
 
             request.open("GET", url, true);
-            request.send();*/
+            request.send();
         </script>
       </body>
 </html>
