@@ -10,7 +10,7 @@ h2 {
 
 p {
     font-size: 40px;
-    
+
 }
 form {
     margin: 20px auto;
@@ -20,7 +20,7 @@ form {
 
 .lead {
     text-align:right;
-    
+
 }
 .jumbotron{
     padding-top: 10vh;
@@ -46,13 +46,13 @@ form {
     border-width: 2px !important;
 }
 .btn:hover{
-    
+
     background: skyblue;
 }
-    
 
-  
-    
+
+
+
 
 p, .btn{
     color: #008FA3;
@@ -69,7 +69,7 @@ p, .btn{
     color:white !important;
 }
 .activity-info{
-    
+
 }
 
 @import "bourbon";
@@ -84,7 +84,23 @@ html{
 	background:$bg;
   height: 100%;
   backface-visibility: hidden;
-}	
+}
 
 
+/**************************
+	FOOTER
+**************************/
 
+footer {
+	font-size: 1em;
+	text-align: center;
+	clear: both;
+	padding-top: 50px;
+	color: skyblue;
+}
+footer p{
+	font-size: 1em;
+	text-align: center;
+	clear: both;
+	color: skyblue;
+}
