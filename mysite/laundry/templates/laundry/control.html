@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.7.0/sha3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#buttonLogin").click(function (event) {
+                event.preventDefault()
+                $.get("/api/auth/" + $("#inputUsername").val() + "/" + sha3_512($("#inputPassword").val()), function (data, status) {
+                    data = JSON.parse(data);
+                    if (data.error == undefined && data.valid == true) {
+                        document.cookie = "laundry_admin_username=" + $("#inputUsername").val();
+                        document.cookie = "laundry_admin_password=" + sha3_512($("#inputPassword").val());
+                        location.assign("/control");
+                    }
+                    else {
+                        $("#inputUsername").addClass("is-invalid").focus()
+                        $("#inputPassword").val("")
+                        if (data.error == undefined) {
+                            $("#errorMessage").text("Username and password not matched")
+                        }
+                        else {
+                            $("#errorMessage").text(data.error)
+                        }
+                    }
+                }).fail(function () {
+                    $("#inputUsername").addClass("is-invalid").focus()
+                    $("#inputPassword").val("")
+                    $("#errorMessage").text("Network error")
+                });
+            });
+            $("#buttonRegister").click(function (event) {
+                event.preventDefault()
+                $.get("/api/register/" + $("#inputUsername").val() + "/" + sha3_512($("#inputPassword").val()), function (data, status) {
+                    data = JSON.parse(data);
+                    if (data.error == undefined) {
+                        document.cookie = "laundry_admin_username=" + $("#inputUsername").val();
+                        document.cookie = "laundry_admin_password=" + sha3_512($("#inputPassword").val());
+                        location.assign("/control");
+                    }
+                    else {
+                        $("#inputUsername").addClass("is-invalid").focus()
+                        $("#inputPassword").val("")
+                        $("#errorMessage").text(data.error)
+                    }
+                }).fail(function () {
+                    $("#inputUsername").addClass("is-invalid").focus()
+                    $("#inputPassword").val("")
+                    $("#errorMessage").text("Network error")
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin-top:10em">
+            <div class="offset-sm-3 col-sm-6">
+                <form>
+                    <div class="form-group row">
+                        <h1 class="offset-sm-2 col-sm-2">Admin</h1>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h6 class="col-sm-10 offset-sm-2 text-danger" id="errorMessage"></h6>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary mr-2" id="buttonLogin">Sign in</button>
+                            <button type="submit" class="btn btn-primary" id="buttonRegister">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

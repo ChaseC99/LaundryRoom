@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 import re
+import pyqrcode
 email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 alphanumeric_re = re.compile(r"^[a-zA-Z0-9_.-]+$")
 
@@ -23,9 +24,11 @@ class Admin(models.Model):
             username) is not None, "Username must be a non-empty string"
         assert type(password) is str and alphanumeric_re.match(
             password) is not None, "Password must be a non-empty string"
+        assert Admin.objects.filter(
+            username=username).count() == 0, "Admin already exists"
         Admin(username=username.lower(), password=password).save()
 
-    def add_machine(self, m_type, name, min_time, max_time, room):
+    def add_machine(self, m_type, name, min_time, max_time, room) -> "machine":
         assert type(m_type) is str and alphanumeric_re.match(
             m_type) is not None, "Type must be a non-empty string"
         assert type(name) is str and len(
@@ -36,8 +39,8 @@ class Admin(models.Model):
             max_time) is int and max_time > min_time, "Max_time must be greater than min_time"
         assert type(room) is str and alphanumeric_re.match(
             room) is not None, "Room must be a non-empty string"
-        self.machine_set.create(type=m_type, name=name,
-                                min_time=min_time, max_time=max_time, room=room)
+        return self.machine_set.create(type=m_type, name=name,
+                                       min_time=min_time, max_time=max_time, room=room)
 
 
 class Machine(models.Model):
@@ -66,15 +69,24 @@ class Machine(models.Model):
             email) is not None, "Invalid email"
         assert type(
             duration) is int and self.min_time <= duration <= self.max_time, "Duration is out of range"
+        num_of_users = self.user_set.count()
+        assert num_of_users == 0 or self.user_set.order_by(
+            "start_time")[num_of_users - 1:num_of_users].get().end(), "This machine is in use"
         self.user_set.create(name=name, email=email,
                              start_time=timezone.now(), duration=duration)
 
     def machine_info(self) -> (str, str, str, int, int):
         num_of_users = self.user_set.count()
-        assert num_of_users > 0, "Empty machine"
+        if num_of_users <= 0:
+            return (self.name,)
         last_user = self.user_set.order_by(
             "start_time")[num_of_users - 1:num_of_users].get()
         return (self.name, last_user.name, last_user.email, last_user.get_start_timestamp(), last_user.duration)
+
+    def gen_qr(self):
+        url = pyqrcode.create(
+            "http://169.234.81.18:8000/machine.html?machine=" + str(self.id))
+        url.png("../img/" + str(self.id) + ".png", scale=10)
 
 
 class User(models.Model):
@@ -89,3 +101,6 @@ class User(models.Model):
 
     def get_start_timestamp(self)->int:
         return int(self.start_time.timestamp() * 1000)
+
+    def end(self)->bool:
+        return self.get_start_timestamp() + self.duration * 60 * 1000 < int(timezone.now().timestamp() * 1000)

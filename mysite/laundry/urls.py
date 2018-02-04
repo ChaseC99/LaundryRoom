@@ -5,11 +5,17 @@ from . import views
 urlpatterns = [
     # ex: /
     path('', views.index, name='index'),
-    # ex: /machine/5/
-    path('machine/<int:machine_id>/', views.machine, name='machine'),
-    # ex: /machine/5/timer/
-    path('machine/<int:machine_id>/timer/', views.timer, name='timer'),
+    # ex: /login
+    path('login', views.login, name='login'),
     # API
+    # ex: /api/auth/admin/5m3ofp350...
+    path('api/auth/<str:username>/<str:password>/', views.auth, name='auth'),
+    # ex: /api/register/admin/5m3ofp350...
+    path('api/register/<str:username>/<str:password>/',
+         views.register, name='register'),
+    # ex: /api/add_machine/admin/washer/washer#1/30/60/laundryroom
+    path('api/add_machine/<str:admin>/<str:type>/<str:name>/<int:min_time>/<int:max_time>/<str:room>/',
+         views.add_machine, name='add_machine'),
     # ex: /api/all_machine/nieblaLaundryRoom
     path('api/all_machine/<str:room>/', views.all_machine, name='all_machine'),
     # ex: /api/new_user/john/john@test.com/45
