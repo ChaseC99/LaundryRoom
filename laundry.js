@@ -51,21 +51,26 @@ function addMachineButtons(machines){
 
 function machineSelected(id){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/machine_info/1";
+    url = "http://169.234.81.18:8000/api/machine_info/" + id;
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var machine_info = JSON.parse(this.responseText);
+            console.log(machine_info);
 
-            end_time = machine_info["start_time"]/1000 + 55*60;
+            end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
             current_time = + new Date();
 
-            console.log(id);
+            console.log("start: " + machine_info["start_time"])
+            console.log("dur: " + machine_info["duration"]*60*1000)
+            console.log("now: " + current_time)
+            console.log("end: " + end_time)
 
             if (current_time < end_time){
-                // similar behavior as clicking on a link
-                window.location.href = "UserForm.html?machine=" + id;
+                console.log("current < end")
+                window.location.href = "machinebusy.html?machine=" + id;
             } else {
+                console.log("current > end")
                 window.location.href = "UserForm.html?machine=" + id;
             }
         }
