@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>User Form</title>
+    <script lang="javascript" src="laundry.js"></script>
     
     <link rel = "stylesheet" type = "text/css" href = "userformstyle.css">
 </head>
@@ -15,10 +16,8 @@
 
     
     <h2> You are using machine <br><p id="right">
-<script type="text/javascript">
-m = location.href.split('?');
-f = m[1].split('=');    
-document.write(f[1]);
+<script>
+    findMachineId()
 </script>
 </p> </h2>
 
@@ -29,7 +28,10 @@ document.write(f[1]);
         <input type = "email" name = 'txtbox' placeholder = "Email Address" required>
 
         <input type = "submit" value = "Submit">
-        <input type="button" onclick="location.href='timer.html';" value="Go to Timer!" />
+        <script>
+            
+        </script>
+        <input type="button" onclick="location.href='timer.html?machine='" value="Go to Timer!" />
 
     </form>
 </body>
