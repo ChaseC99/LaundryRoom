@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>LAUNDRY ROOM</title>
+        <link rel="icon" href="img/mena_machine.png">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script lang="javascript" src="laundry.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -16,63 +18,96 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="col-xs-6" id="machines">
 					<hr />
-					<p style="text-align: center;">
-						<b>Washers</b>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Washer 1</button>
-						</a>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Washer 2</button>
-						</a>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Washer 3</button>
-						</a>
-					</p>
+					<p style="text-align: center;"><b>Washers</b></p>
+                    <div id="Washers"></div>
 					<hr />
-					<p style="text-align: center;">
-						<b>Dryers</b>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Dryer 1</button>
-						</a>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Dryer 2</button>
-						</a>
-					</p>
-					<p style="text-align: center;">
-						<a href="UserForm.html">
-							<button class="btn" type="button">Dryer 3</button>
-						</a>
-					</p>
+					<p style="text-align: center;"><b>Dryers</b></p>
+                    <div id="Dryers"></div>
+                   
+                    <script>getMachines();</script>
 				</div>
-				<div class="col-xs-6">
-				
+            </div>
+            <div class="jumbotron" style="margin-top: 45px">
+                <h2 class="display-4">Hello, world!</h2>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                </p>
+            </div>
+            
+
+
+			<div class="col-xs-6">
+
 				</div>
 			</div>
 			<div class="row">
 				<div class="activity container-fluid">
-					<p style="color:white">
+					<p style="color:white; margin-top: 50px">
 						<b>Activity Log: </b>
-					</p>  
-					<div id="#appendInfoHere" class="activity-info">
+					</p>
+					<div id="#appendInfoHere" class="activity-info" style="margin-top: 75px">
 					</div>
+                    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Time</th>
+      <th scope="col">Machine No</th>
+      <th scope="col">Machine Type</th>
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>@mdo</td>
+    </tr>
+      <tr>
+      <th scope="row">4</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>@mdo</td>
+    </tr>
+      <tr>
+      <th scope="row">5</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>@mdo</td>
+    </tr>
+      <tr>
+      <th scope="row">6</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
 				</div>
 			</div>
 	    </div>
 	</body>
 </html>
-
-
-
-
