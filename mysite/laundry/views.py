@@ -18,18 +18,9 @@ import json
 #     return HttpResponse(template.render(context, request))
 
 def control(request):
-    template = loader.get_template('laundry/control.html')
-    return HttpResponse(template.render({}, request))
-
-
-def index(request):
+    print("=" * 70)
     print(request)
-    template = loader.get_template('laundry/index.html')
-    return HttpResponse(template.render({}, request))
-
-
-def laundry_js(request):
-    template = loader.get_template('laundry/laundry.js')
+    template = loader.get_template('laundry/control.html')
     return HttpResponse(template.render({}, request))
 
 
@@ -37,45 +28,6 @@ def login(request):
     template = loader.get_template('laundry/login.html')
     return HttpResponse(template.render({}, request))
 
-
-def machine(request):
-    template = loader.get_template('laundry/machine.html')
-    return HttpResponse(template.render({}, request))
-
-
-def machinebusy_css(request):
-    template = loader.get_template('laundry/machinebusy.css')
-    return HttpResponse(template.render({}, request))
-
-
-def machinebusy(request):
-    template = loader.get_template('laundry/machinebusy.html')
-    return HttpResponse(template.render({}, request))
-
-
-def mystyle_css(request):
-    template = loader.get_template('laundry/mystyle.css')
-    return HttpResponse(template.render({}, request))
-
-
-def timer_css(request):
-    template = loader.get_template('laundry/timer.css')
-    return HttpResponse(template.render({}, request))
-
-
-def timer(request):
-    template = loader.get_template('laundry/timer.html')
-    return HttpResponse(template.render({}, request))
-
-
-def UserForm(request):
-    template = loader.get_template('laundry/UserForm.html')
-    return HttpResponse(template.render({}, request))
-
-
-def userformstyle_css(request):
-    template = loader.get_template('laundry/userformstyle.css')
-    return HttpResponse(template.render({}, request))
 
 # API
 

@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.7.0/sha3.min.js"></script>
     <script>
         $(document).ready(function () {
+
             $("#buttonLogin").click(function (event) {
                 event.preventDefault()
                 $.get("/api/auth/" + $("#inputUsername").val() + "/" + sha3_512($("#inputPassword").val()), function (data, status) {
