@@ -34,7 +34,7 @@
                     duration = document.getElementById("duration").value;
 
                     request = new XMLHttpRequest();
-                    url = "http://169.234.81.18:8000/api/new_user/" + id + "/" + email + "/" + email + "/" + duration;
+                    url = "http://169.234.81.18:8000/api/new_user/" + id + "/" + name + "/" + email + "/" + duration;
 
                     request.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
