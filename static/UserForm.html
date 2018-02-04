@@ -63,5 +63,23 @@
             <center><input type = "submit" value = "Submit"></center>
 
         </form>
+        <br>
+        <center><span id="lastUser">
+            <script>
+            request = new XMLHttpRequest();
+            url = "http://169.234.81.18:8000/api/machine_info/" + findMachineId();
+
+            request.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var machines = JSON.parse(this.responseText);
+                    console.log(machines)
+                    document.getElementById("lastUser").innerHTML = "Last User: " + machines["name"] + " - " + machines["email"];
+                }
+            };
+
+            request.open("GET", url, true);
+            request.send();
+            </script>
+        </span></center>
     </body>
 </html>
