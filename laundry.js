@@ -16,11 +16,14 @@ function getMachines(){
 }
 
 function addMachineButtons(machines){
-    machine_div = document.getElementById("machines");
+    washer_div = document.getElementById("Washers");
+    dryer_div = document.getElementById("Dryers");
+    console.log(dryer_div);
 
     for(var i = 0; i < machines.length; i++){
         link_url = "UserForm.html?machine=" + machines[i]["id"];
         name = machines[i]["name"];
+        type = machines[i]["type"];
 
         console.log(name);
 
@@ -36,6 +39,11 @@ function addMachineButtons(machines){
         link.appendChild(button);
         p.appendChild(link);
         console.log(p);
-        machine_div.appendChild(p);
+        console.log(type);
+        if(type == "washer"){
+            washer_div.appendChild(p);
+        } else if(type == "dryer"){
+            dryer_div.appendChild(p);
+        }
     }
 }
