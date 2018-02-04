@@ -1,4 +1,6 @@
 <!DOCTYPE HTML>
+
+
 <html>
 <head>
     <title>User Form</title>
@@ -7,10 +9,19 @@
 </head>
 
 <body>
+    <div id="machine"></div>
     <div class="container-fluid">
     <h1>User Form</h1>
+
     
-    <h2> (You are using [machine x])</h2>
+    <h2> You are using machine <br><p id="right">
+<script type="text/javascript">
+m = location.href.split('?');
+f = m[1].split('=');    
+document.write(f[1]);
+</script>
+</p> </h2>
+
     </div>
     <form>
 
@@ -22,5 +33,6 @@
 
     </form>
 </body>
+    
     
 </html>
