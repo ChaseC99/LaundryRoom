@@ -24,17 +24,12 @@ function getMachines(){
 function addMachineButtons(machines){
     washer_div = document.getElementById("Washers");
     dryer_div = document.getElementById("Dryers");
-    console.log(dryer_div);
 
     for(var i = 0; i < machines.length; i++){
-        link_url = "UserForm.html?machine=" + machines[i]["id"];
         id = machines[i]["id"];
         action = "machineSelected(" + id + ")";
         name = machines[i]["name"];
         type = machines[i]["type"];
-
-        console.log(name);
-        console.log(action)
 
         p = document.createElement("p");
         p.style = "text-align: center";
@@ -42,16 +37,16 @@ function addMachineButtons(machines){
         link.href = link_url;
         button = document.createElement("button");
         button.addEventListener('click', function(){
-            machineSelected(id);
+            machineSelected(this.value);
         });
         button.className = "btn";
+        button.value = id;
         button.type = "button";
         button.innerHTML = name;
 
         link.appendChild(button);
         p.appendChild(link);
-        console.log(p);
-        console.log(type);
+
         if(type == "washer"){
             washer_div.appendChild(p);
         } else if(type == "dryer"){
@@ -62,16 +57,20 @@ function addMachineButtons(machines){
 
 function machineSelected(id){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/machine_info/1";
-    console.log(url)
+    url = "http://169.234.81.18:8000/api/machine_info/" + id;
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var machine_info = JSON.parse(this.responseText);
-            console.log(machine_info)
 
-            end_time = machine_info["start_time"]/1000;
-            console.log(end_time);
+            end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
+            current_time = + new Date();
+
+            if (current_time < end_time){
+                window.location.href = "machinebusy.html?machine=" + id;
+            } else {
+                window.location.href = "UserForm.html?machine=" + id;
+            }
         }
     };
 
