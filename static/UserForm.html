@@ -57,7 +57,7 @@
             <br>
             <input type = "email" id = 'userEmail' placeholder = "Email Address" required>
             <br>
-            <center><input type = "number" id = 'duration' placeholder = "0 minutes" min = 30 max = 60 required></center>
+            <center><input type = "number" id = 'duration' placeholder = "0 minutes" required></center>
             <br>
 
             <center><input type = "submit" value = "Submit"></center>
@@ -74,6 +74,8 @@
                     var machines = JSON.parse(this.responseText);
                     console.log(machines)
                     document.getElementById("lastUser").innerHTML = "Last User: " + machines["name"] + " - " + machines["email"];
+                    document.getElementById("duration").max = machines['max_time'];
+                    document.getElementById("duration").min = machines['min_time'];
                 }
             };
 
@@ -81,5 +83,9 @@
             request.send();
             </script>
         </span></center>
+        <footer>
+                <a href="https://github.com/ChaseC99/LaundryRoom" target="_blank">Source Code</a>
+                <p>&copy; 2018 Mena's Hackers</p>
+        </footer>
     </body>
 </html>
