@@ -1,7 +1,7 @@
 function findMachineId(){
     m = location.href.split('?');
     f = m[1].split('=');
-    document.write(f[1]);
+    return f[1];
 }
 
 function getMachines(){
