@@ -28,14 +28,6 @@ h4{
   
 }
 
-p{
-    width: 115%;
-   
-    text-align: center;
-    display:block;
-    margin:auto;
-    
-}
 
 
 }
@@ -67,4 +59,14 @@ p{
 .smalltext{
 	padding-top: 5px;
 	font-size: 30px;
+}
+
+
+p{
+    width: 115%;
+   
+    text-align: center;
+    display:block;
+    margin:auto;
+    
 }
