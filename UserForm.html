@@ -8,23 +8,25 @@
     </head>
 
     <body>
-        <div id="machine"></div>
         <div class="container-fluid">
-        <h1>User Form</h1>
-
-
-        <h2> You are using machine <br><p id="right">
-    <script>
-        id = findMachineId()
-        document.write(id);
-    </script>
-    </p> </h2>
-
+            <h1>Start New Cycle</h1>
+            <h2>
+                Enter your information below to start a new cycle for
+                <br>
+                <p id="right">
+                    <script>
+                    p = document.getElementById('right');
+                    id = findMachineId();
+                    addMachineName(id, p);
+                    </script>
+                </p>
+            </h2>
         </div>
         <form>
 
-            <input type = "text" name = 'txtbox' placeholder = "First and Last Name" required>
-            <input type = "email" name = 'txtbox' placeholder = "Email Address" required>
+            <input type = "text" name = 'name' placeholder = "First and Last Name" required>
+            <input type = "number" name = 'time' placeholder = "0 minutes" min = 30 max = 60 required>
+            <input type = "email" name = 'email' placeholder = "Email Address" required>
 
             <input type = "submit" value = "Submit">
 
