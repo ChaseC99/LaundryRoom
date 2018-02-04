@@ -7,6 +7,7 @@ h2 {
     color: grey;
     font-family: avenir;
 }
+
 p {
     font-size: 40px;
     
@@ -70,5 +71,20 @@ p, .btn{
 .activity-info{
     
 }
+
+@import "bourbon";
+
+$n:6;
+$w:20px;//dot size
+$e:4;//dot margin factor
+$hsl:160;//start color
+$bg:#333;
+
+html{
+	background:$bg;
+  height: 100%;
+  backface-visibility: hidden;
+}	
+
 
 
