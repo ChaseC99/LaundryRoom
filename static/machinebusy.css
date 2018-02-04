@@ -28,11 +28,6 @@ h4{
 
 }
 
-
-
-
-
-
 #clockdiv{
 	font-family: avenir;
 	color: lightblue;
@@ -54,6 +49,11 @@ h4{
 	border-radius: 5px;
 	background: lightblue;
 	display: inline-block;
+}
+
+#minutes, #seconds{
+    font-weight: bold;
+    color: black;
 }
 
 .smalltext{
