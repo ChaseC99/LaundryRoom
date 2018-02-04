@@ -93,7 +93,7 @@ function machineSelected(id){
 }
 
 
-function startTimer(duration, display) {
+function startTimer(duration) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10)
@@ -110,11 +110,6 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
-
-window.onload = function () {
-    var Minutes = 60 * 1;
-    startTimer(Minutes);
-};
        
 
 // ACTIVITY LOG CODE
