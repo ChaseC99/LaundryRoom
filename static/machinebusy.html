@@ -9,26 +9,34 @@
 	</head>
     <body>
         <div class="container-fluid">
-            <h2 style="text-align: center;">Machine is used by <br> [User Form] <br> [User Email] </h2>
+            <h2 style="text-align: center;">Machine is being used by
+				<br>
+				<span id='userName'></span>
+				<br>
+				<span id='userEmail'></span>
+			</h2>
 
             <h3 style="text-align: center;">Time Remaining</h3>
-            <h4 style="text-align: center;">for machine number 
-                <script>
-                        document.write(findMachineId());
-                </script></h4>
-            <div id="clockdiv" style="margin-top: 100px;">
-              <div>
-                <span id="minutes"></span>
-                <div class="smalltext">Minutes</div>
-              </div>
-              <div>
-                <span id="seconds"></span>
-                <div class="smalltext">Seconds</div>
-              </div>
-            <p><img src="img/mena_spinning.gif" alt="mena"></p>
-            </div>
+            <h4 style="text-align: center;">for
+				<br>
+				<span id='machineName'></span>
+			</h4>
+			<center>
+	            <div id="clockdiv" style="margin-top: 100px;">
+	              <div>
+	                <span id="minutes"></span>
+	                <div class="smalltext">Minutes</div>
+	              </div>
+	              <div>
+	                <span id="seconds"></span>
+	                <div class="smalltext">Seconds</div>
+	              </div>
+	            </div>
+			</center>
+			<br>
+			<center><img id = "menaPic" src="img/mena_spinning.gif" alt="mena"></center>
         </div>
-            
+
         <script>
             request = new XMLHttpRequest();
             url = "http://169.234.81.18:8000/api/machine_info/" + findMachineId();
@@ -39,9 +47,17 @@
 
                     end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
                     current_time = + new Date();
-                    
+
+					user = machine_info["name"];
+					email = machine_info["email"];
+					machine = machine_info["machine_name"];
+
+					document.getElementById('userName').innerHTML = user;
+					document.getElementById('userEmail').innerHTML = email;
+					document.getElementById('machineName').innerHTML = machine;
+
                     time_till_done = (end_time - current_time)/1000;
-                    
+
                     startTimer(time_till_done);
                 }
             };
