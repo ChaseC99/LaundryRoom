@@ -3,14 +3,18 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # ex: /
+    path('control', views.control, name='control'),
     path('', views.index, name='index'),
-    # ex: /login
-    path('login', views.login, name='login'),
-    # ex: /machine
-    path('machine', views.machine, name='machine'),
-    # ex: /laundry_js
     path('laundry.js', views.laundry_js, name='laundry_js'),
+    path('login', views.login, name='login'),
+    path('machine', views.machine, name='machine'),
+    path('machinebusy.css', views.machinebusy_css, name='machinebusy_css'),
+    path('machinebusy', views.machinebusy, name='machinebusy'),
+    path('mystyle.css', views.mystyle_css, name='mystyle_css'),
+    path('timer.css', views.timer_css, name='timer_css'),
+    path('timer', views.timer, name='timer'),
+    path('UserForm', views.UserForm, name='UserForm'),
+    path('userformstyle.css', views.userformstyle_css, name='userformstyle_css'),
     # API
     # ex: /api/auth/admin/5m3ofp350...
     path('api/auth/<str:username>/<str:password>/', views.auth, name='auth'),
