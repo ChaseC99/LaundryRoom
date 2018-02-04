@@ -3,6 +3,7 @@ from django.utils import timezone
 from datetime import datetime
 import re
 import pyqrcode
+from pathlib import Path
 email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 alphanumeric_re = re.compile(r"^[a-zA-Z0-9_.-]+$")
 
@@ -85,8 +86,8 @@ class Machine(models.Model):
 
     def gen_qr(self):
         url = pyqrcode.create(
-            "http://169.234.81.18:8000/machine?id=" + str(self.id))
-        url.png("laundry/templates/laundry/img/" +
+            "http://169.234.81.18:8000/s/machine.html?id=" + str(self.id))
+        url.png("../static/img/" +
                 str(self.id) + ".png", scale=10)
 
 

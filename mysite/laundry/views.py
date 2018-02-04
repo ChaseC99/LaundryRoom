@@ -23,6 +23,7 @@ def control(request):
 
 
 def index(request):
+    print(request)
     template = loader.get_template('laundry/index.html')
     return HttpResponse(template.render({}, request))
 
