@@ -6,7 +6,7 @@ function findMachineId(){
 
 function getMachines(){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/all_machine/Niebla%20laundry%20room/";
+    url = "http://169.234.81.18:8000/api/all_machine/Nieblalaundryroom/";
     console.log(url)
 
     request.onreadystatechange = function() {
@@ -110,7 +110,7 @@ function startTimer(duration) {
         }
     }, 1000);
 }
-       
+
 
 // ACTIVITY LOG CODE
 
