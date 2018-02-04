@@ -1,33 +1,81 @@
+<!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>LAUNDRY ROOM</title>
+        <link rel="icon" href="img/mena_machine.png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script lang="javascript" src="laundry.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="jumbotron">
+				<h1>Welcome to the Laundry Room!</h1>
+				<h2>The laundry problem ends now...</h2>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12" id="machines">
+                    <hr/>
+					<p style="text-align: center"><b>Washers</b></p>
+                    <div id="Washers"></div>
+					<center><hr/></center>
+					<p style="text-align: center"><b>Dryers</b></p>
+                    <div id="Dryers" ></div>
 
-<body>
-    <h1>Hello World!</h1>
-    <p>You're at the laundry index.</p>
-    {% if machines %}
-    <ul>
-        <li>{{machines.items}}</li>
-        {% for type,machine_list in machines.items %}
-        <li>{{type}}</li>
-        <ul>
-            {% for id,name in machine_list %}
-            <li>
-                <a href="/machine/{{ id }}/">{{ name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <pre>No machines are available.</pre> {% endif %} {% if admins %}
-    <ul>
-        <li>{{admins}}</li>
-        {% for admin in admins %}
-        <li>{{ admin }} </li>
-    </ul>
-    {% endfor %}
-    </ul>
-    {% else %}
-    <pre>No machines are available.</pre> {% endif %}
-</body>
+                    <script>getMachines();</script>
+				</div>
+            </div>
+			<div class="col-xs-6"></div>
+		</div>
+			<div class="row">
+				<div class="activity container-fluid">
+					<p style="color:white; margin-top: 50px">
+						<b>Activity Log: </b>
+					</p>
+					<div id="#appendInfoHere" class="activity-info" style="margin-top: 75px"></div>
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
 
+                          <th scope="col">Machine Name</th>
+                          <th scope="col">Machine Type</th>
+                          <th scope="col">User</th>
+                          <th scope="col">Email</th>
+                        </tr>
+                      </thead>
+                      <tbody id="activityLog"></tbody>
+                          <script>
+                              request = new XMLHttpRequest();
+                              url = "http://169.234.81.18:8000/api/all_machine/Niebla%20laundry%20room/";
+                              tbl = document.getElementById("activityLog");
+
+                              request.onreadystatechange = function() {
+                                  if (this.readyState == 4 && this.status == 200) {
+                                      var machines = JSON.parse(this.responseText)["machines"];
+                                      loadActivityLog(tbl, machines)
+                                  }
+                              };
+
+                              request.open("GET", url, true);
+                              request.send();
+                          </script>
+                      </tbody>
+                    </table>
+				</div>
+			</div>
+        <div class="jumbotron" style="margin-top: 45px">
+            <h2 class="display-4" style="margin-bottom: 50px">Trouble Managing Your Laundry Machine? </h2>
+            <h3>Laundry Room allows consumers to track the status of their laundry machines by monitering who's using it, the time left, and allowing communication with other users via email.</h3>
+            <hr class="my-4">
+            <h4 >Simply scan the QR Code or select your washer/dryer above. From small homes to broad businesses, Laundry Room is the assistant towards simplifying your life and preventing future passive aggressive fights. Cheers! </h4>
+            <p class="lead">
+            </p>
+        </div>
+        <footer>
+				<a href="https://github.com/ChaseC99/LaundryRoom" target="_blank">Source Code</a>
+				<p>&copy; 2018 Mena's Hackers</p>
+		</footer>
+	</body>
 </html>

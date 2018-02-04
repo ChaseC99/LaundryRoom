@@ -35,7 +35,7 @@ h4{
 
 #clockdiv{
 	font-family: avenir;
-	color: white;
+	color: lightblue;
 	display: inline-block;
 	font-weight: 100;
 	text-align: center;
@@ -52,7 +52,7 @@ h4{
 #clockdiv div > span{
 	padding: 20px;
 	border-radius: 5px;
-	background: white;
+	background: lightblue;
 	display: inline-block;
 }
 
