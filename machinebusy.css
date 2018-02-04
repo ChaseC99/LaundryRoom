@@ -1,11 +1,70 @@
 .container-fluid{
     padding-top: 5vh;
-    padding-bottom: 5vh;
+    padding-bottom: 30vh;
     padding-left: 10vw;
     padding-right: 10vw;
     background-color: skyblue;
 }
-h1{
+
+
+h2{
+    color: darkcyan;
+    font-family: avenir;
+    font-size: 50;
+}
+
+h3{
     color: white;
     font-family: avenir;
+    font-size: 40;
+    
+  
+}
+
+h4{
+    color: white;
+    font-family: avenir;
+    font-size: 40;
+  
+}
+
+p{
+    width: 115%;
+   
+    text-align: center;
+    display:block;
+    margin:auto;
+    
+}
+
+
+}
+
+
+#clockdiv{
+	font-family: avenir;
+	color: white;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 30px;
+	border-radius: 30px;
+	background: darkcyan;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 20px;
+	border-radius: 5px;
+	background: white;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 30px;
 }
