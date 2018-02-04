@@ -56,21 +56,13 @@ function machineSelected(id){
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var machine_info = JSON.parse(this.responseText);
-            console.log(machine_info);
 
             end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
             current_time = + new Date();
 
-            console.log("start: " + machine_info["start_time"])
-            console.log("dur: " + machine_info["duration"]*60*1000)
-            console.log("now: " + current_time)
-            console.log("end: " + end_time)
-
             if (current_time < end_time){
-                console.log("current < end")
                 window.location.href = "machinebusy.html?machine=" + id;
             } else {
-                console.log("current > end")
                 window.location.href = "UserForm.html?machine=" + id;
             }
         }
