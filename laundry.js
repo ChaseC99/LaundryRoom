@@ -1,11 +1,22 @@
 base_url = "http://169.234.81.18:8000"
 
+// Find Machine ID
+// This method pulls the machine id from the url
+//
+// pre: url must contain a query string with the first parameter being the id
+// 	ex: www.laundryRoom.com/?id=10
+// post: returns str of id num
 function findMachineId(){
     m = location.href.split('?');
     f = m[1].split('=');
     return f[1];
 }
 
+// Get Machines
+// Sends a request to the server for the machines
+// Recieves a json object containing information about the machines
+// 
+// onload: calls the addMachineButtons func to add machines to the page
 function getMachines(){
     request = new XMLHttpRequest();
     url = base_url + "/api/all_machine/Nieblalaundryroom/";
@@ -23,16 +34,25 @@ function getMachines(){
     request.send();
 }
 
+// Add Machine Buttons
+// Adds the machines to the index page
+//
+// pre: machines is a json object containing info about machines
+// post: buttons for each machine are added to the page
 function addMachineButtons(machines){
+    // Get the divs for washer and dryer
     washer_div = document.getElementById("Washers");
     dryer_div = document.getElementById("Dryers");
 
+	// Loop through the machines
     for(var i = 0; i < machines.length; i++){
-        id = machines[i]["id"];
+        // Get information about machine from json
+		id = machines[i]["id"];
         action = "machineSelected(" + id + ")";
         name = machines[i]["name"];
         type = machines[i]["type"];
 
+		// Generate the html for the machine
         p = document.createElement("p");
         p.style = "text-align: center";
         link = document.createElement("a");
@@ -47,7 +67,8 @@ function addMachineButtons(machines){
 
         link.appendChild(button);
         p.appendChild(link);
-
+		
+		// put machine under either washer or dryer
         if(type == "washer"){
             washer_div.appendChild(p);
         } else if(type == "dryer"){
@@ -56,6 +77,10 @@ function addMachineButtons(machines){
     }
 }
 
+// Add Machine Name
+// Adds a machines name to an element based off of the given id
+//
+// post: element's inner html is set to the machine's name
 function addMachineName(id, element){
     request = new XMLHttpRequest();
     url = base_url + "/api/machine_info/" + id;
@@ -71,6 +96,14 @@ function addMachineName(id, element){
     request.send();
 }
 
+
+// Machine Selected
+// Determines whether to redirect the page to machinebusy or UserForm
+// Checks current time against the machine's end time
+//		if now is before the end time, machinebusy is displayed
+//		if now is after the end time, UserForm is displayed
+//
+// post: redirected to a new page
 function machineSelected(id){
     request = new XMLHttpRequest();
     url = base_url + "/api/machine_info/" + id;
@@ -79,9 +112,12 @@ function machineSelected(id){
         if (this.readyState == 4 && this.status == 200) {
             var machine_info = JSON.parse(this.responseText);
 
+			// Check current time against now
             end_time = machine_info["start_time"] + machine_info["duration"]*60*1000;
             current_time = + new Date();
 
+			// If now is less than end time, display machine busy
+			//	else display UserForm
             if (current_time < end_time){
                 window.location.href = "machinebusy.html?machine=" + id;
             } else {
@@ -95,6 +131,8 @@ function machineSelected(id){
 }
 
 
+// Start Timer
+// Creates the timer on machinebusy
 function startTimer(duration) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -146,6 +184,8 @@ function generate_row(data, rowNum){
     return row;
 }
 
+// Generate all rows
+// Calls generate_row on all rows
 function generate_all_rows(data){
     var rows = [];
 
