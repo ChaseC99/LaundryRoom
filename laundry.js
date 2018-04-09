@@ -1,3 +1,5 @@
+base_url = "http://169.234.81.18:8000"
+
 function findMachineId(){
     m = location.href.split('?');
     f = m[1].split('=');
@@ -6,7 +8,7 @@ function findMachineId(){
 
 function getMachines(){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/all_machine/Nieblalaundryroom/";
+    url = base_url + "/api/all_machine/Nieblalaundryroom/";
     console.log(url)
 
     request.onreadystatechange = function() {
@@ -56,7 +58,7 @@ function addMachineButtons(machines){
 
 function addMachineName(id, element){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/machine_info/" + id;
+    url = base_url + "/api/machine_info/" + id;
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -71,7 +73,7 @@ function addMachineName(id, element){
 
 function machineSelected(id){
     request = new XMLHttpRequest();
-    url = "http://169.234.81.18:8000/api/machine_info/" + id;
+    url = base_url + "/api/machine_info/" + id;
 
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
